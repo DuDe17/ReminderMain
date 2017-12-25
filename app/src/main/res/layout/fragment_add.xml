@@ -1,11 +1,56 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.example.dude.remindermain.AddFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
+    <TextView
+        android:id="@+id/TaskName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_task"
+        />
 
+    <EditText
+        android:id="@+id/EditTaskName"
+        android:layout_width="fill_parent"
+        android:hint="@string/workout_daily"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        />
+
+    <Spinner
+        android:id="@+id/frequencySpinner"
+        android:layout_width="fill_parent"
+        android:prompt="@string/frequency"
+        android:layout_height="wrap_content"
+        android:entries="@array/reminderFrequency">
+    </Spinner>
+
+    <Spinner
+        android:id="@+id/weeekdaySpinner"
+
+        android:layout_width="fill_parent"
+        android:prompt="@string/weekday"
+        android:layout_height="wrap_content"
+        android:entries="@array/weekDayArray">
+    </Spinner>
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    </TimePicker>
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="fill_parent"
+        android:text="@string/add_task"
+        android:onClick="addTask"
+        android:layout_height="wrap_content"
+        />
 
 </LinearLayout>

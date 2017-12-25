@@ -7,4 +7,31 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_task">Add Task</string>
+    <string name="workout_daily">Workout Daily</string>
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+    <string name="frequency">Frequency</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="weekday">Day</string>
+
+    <string-array name="reminderFrequency">
+        <item>@string/daily</item>
+        <item>@string/weekly</item>
+    </string-array>
+    <string-array name="weekDayArray">
+        <item>@string/sunday</item>
+        <item>@string/monday</item>
+        <item>@string/tuesday</item>
+        <item>@string/wednesday</item>
+        <item>@string/thursday</item>
+        <item>@string/friday</item>
+        <item>@string/saturday</item>
+    </string-array>
 </resources>
