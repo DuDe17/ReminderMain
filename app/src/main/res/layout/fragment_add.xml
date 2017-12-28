@@ -8,7 +8,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/TaskName"
+        android:id="@+id/TaskNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_task"
@@ -22,6 +22,13 @@
         android:inputType="textPersonName"
         />
 
+    <TextView
+        android:id="@+id/ReminderResetLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reset"
+        />
+
     <Spinner
         android:id="@+id/frequencySpinner"
         android:layout_width="fill_parent"
@@ -30,26 +37,42 @@
         android:entries="@array/reminderFrequency">
     </Spinner>
 
-    <Spinner
-        android:id="@+id/weeekdaySpinner"
-
+    <TextView
+        android:id="@+id/TimeLabel"
         android:layout_width="fill_parent"
-        android:prompt="@string/weekday"
         android:layout_height="wrap_content"
-        android:entries="@array/weekDayArray">
-    </Spinner>
+        android:text="Time"
+        />
 
-    <TimePicker
-        android:id="@+id/timePicker"
+    <EditText
+        android:id="@+id/timeEdit"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-    </TimePicker>
+        android:layout_height="wrap_content"
+        android:hint="Reminder Time"
+        android:inputType="time"
+        />
+
+    <TextView
+        android:id="@+id/TotalTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_time"
+        />
+
+    <EditText
+        android:id="@+id/totalTimeEdit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/total_number_hrs"
+        android:inputType="number"
+        />
 
     <Button
         android:id="@+id/addButton"
         android:layout_width="fill_parent"
         android:text="@string/add_task"
         android:onClick="addTask"
+        android:enabled="false"
         android:layout_height="wrap_content"
         />
 
