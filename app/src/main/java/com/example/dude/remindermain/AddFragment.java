@@ -35,9 +35,9 @@ public class AddFragment extends Fragment {
         //Inflate the layout for this fragment
 
         //Edit Text UI validations
-        EditText taskName = (EditText)addFragment.findViewById(R.id.EditTaskName);
-        EditText resetTime = (EditText)addFragment.findViewById(R.id.timeEdit);
-        EditText totalTime = (EditText)addFragment.findViewById(R.id.totalTimeEdit);
+        final EditText taskName = (EditText)addFragment.findViewById(R.id.EditTaskName);
+        final EditText resetTime = (EditText)addFragment.findViewById(R.id.timeEdit);
+        final EditText totalTime = (EditText)addFragment.findViewById(R.id.totalTimeEdit);
         taskName.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -50,7 +50,8 @@ public class AddFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                activateTaskButton(addFragment, addLogicUnit);
+                if(activateTaskButton(addFragment, addLogicUnit))
+                    addLogicUnit.setTaskName(taskName.getText().toString().trim());
             }
         });
         resetTime.addTextChangedListener(new TextWatcher() {
@@ -65,7 +66,8 @@ public class AddFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                activateTaskButton(addFragment, addLogicUnit);
+                if(activateTaskButton(addFragment, addLogicUnit))
+                    addLogicUnit.setTime(resetTime.getText().toString().trim());
             }
         });
         totalTime.addTextChangedListener(new TextWatcher() {
@@ -80,7 +82,8 @@ public class AddFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                activateTaskButton(addFragment, addLogicUnit);
+                if(activateTaskButton(addFragment, addLogicUnit))
+                    addLogicUnit.setTotalTime(totalTime.getText().toString().trim());
             }
         });
         //Edit Text UI validations
@@ -108,25 +111,32 @@ public class AddFragment extends Fragment {
                 Toast.makeText(getContext(), "Cheers", Toast.LENGTH_SHORT).show();
             }
         });
+
+        //Add Task Button Click Event
+        addFragment.findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Cheers", Toast.LENGTH_SHORT).show();
+            }
+        });
+        //Add Task Button Click Event
         return addFragment;
     }
 
-    private void activateTaskButton(View view, AddLogicUnit addLogicUnit){
+    private boolean activateTaskButton(View view, AddLogicUnit addLogicUnit){
         EditText taskName = (EditText) view.findViewById(R.id.EditTaskName);
         EditText resetTime = (EditText) view.findViewById(R.id.timeEdit);
         EditText totalTimeEdit = (EditText) view.findViewById(R.id.totalTimeEdit);
         Button addTask = (Button) view.findViewById(R.id.addButton);
 
         if(taskName.getText().toString().matches("") || resetTime.getText().toString().matches("") || totalTimeEdit.getText().toString().matches("")) {
-            Toast.makeText(getContext(), "Fill all the details", Toast.LENGTH_SHORT).show();
             addTask.setEnabled(false);
+            return false;
         }
         else {
-            Toast.makeText(getContext(), "Fill ", Toast.LENGTH_SHORT).show();
             addTask.setEnabled(true);
+            return true;
         }
     }
 
-    public void addTask(View view) {
-    }
 }

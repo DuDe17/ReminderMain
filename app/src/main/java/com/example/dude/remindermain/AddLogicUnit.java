@@ -11,6 +11,8 @@ public class AddLogicUnit {
     private String time;
     private String totalTime;
 
+    private String localData;
+
     public String getTaskName() {
         return taskName;
     }
@@ -52,5 +54,14 @@ public class AddLogicUnit {
         this.resetFrequency = 0;
         this.time = null;
         this.totalTime = null;
+        this.localData = "";
+    }
+
+    public boolean prepareAddUnit(){
+        if(this.taskName != null || this.resetFrequency != 0 || this.time != null || this.totalTime != null){
+            this.localData = this.taskName + "|" + this.resetFrequency + "|" + this.time + "|" + this.totalTime;
+            return true;
+        }
+        return false;
     }
 }

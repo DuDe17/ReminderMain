@@ -77,7 +77,6 @@
         android:id="@+id/addButton"
         android:layout_width="fill_parent"
         android:text="@string/add_task"
-        android:onClick="addTask"
         android:enabled="false"
         android:layout_height="wrap_content"
         />
