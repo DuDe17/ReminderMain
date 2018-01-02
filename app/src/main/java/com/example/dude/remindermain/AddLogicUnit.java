@@ -48,6 +48,10 @@ public class AddLogicUnit {
         this.totalTime = totalTime;
     }
 
+    public String getLocalData(){
+        return localData;
+    }
+
     public AddLogicUnit()
     {
         this.taskName = null;

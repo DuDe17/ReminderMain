@@ -3,6 +3,8 @@ package com.example.dude.remindermain;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -116,6 +118,15 @@ public class AddFragment extends Fragment {
         addFragment.findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DataManagement dataManagement = new DataManagement(addFragment.getContext());
+                if(addLogicUnit.prepareAddUnit()){
+                    dataManagement.writeData(addFragment.getContext(), addLogicUnit.getLocalData());
+                    //TODO: check if form fields gets cleared automatically, or handle then manually.
+                    //Move the focus to Home Page
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment, new HomeFragment()).commit();
+                }
+
                 Toast.makeText(getContext(), "Cheers", Toast.LENGTH_SHORT).show();
             }
         });

@@ -28,7 +28,7 @@ public class DataManagement {
         }
     }
 
-    private String readData(Context context){
+    public String readData(Context context){
         String data = "";
         FileInputStream fileInputStream = null;
         try{
@@ -45,7 +45,7 @@ public class DataManagement {
         return data;
     }
 
-    private void writeData(Context context, String data){
+    public void writeData(Context context, String data){
         FileOutputStream fileOutputStream = null;
         try{
             String localData = count + beginToken + data + endToken + "\n";
@@ -59,7 +59,7 @@ public class DataManagement {
         }
     }
 
-    private String findData(String index){
+    public String findData(String index){
         int resultStartIndex = this.data.indexOf(index + beginToken);
         if(resultStartIndex == 0){
             return this.data.substring(5, this.data.indexOf(endToken, resultStartIndex));
