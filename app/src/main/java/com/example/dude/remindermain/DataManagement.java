@@ -5,6 +5,7 @@ import android.content.Context;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by DuDe on 01-01-2018.
@@ -17,6 +18,7 @@ public class DataManagement {
     private static int count = 1;
     private String beginToken = "<SOL>";
     private String endToken = "<EOL>";
+    private static ArrayList<AddLogicUnit> listArray = new ArrayList<AddLogicUnit>();
 
     //Constructor loads up data from file
     public DataManagement(Context context){
@@ -25,7 +27,16 @@ public class DataManagement {
             int index = data.lastIndexOf(beginToken);
             int localCount = Integer.parseInt(data.substring(index - 1,index));
             count = localCount + 1;
+            if(listArray.isEmpty())
+                parseData();
         }
+    }
+
+    public ArrayList<AddLogicUnit> getListArray() {
+        if(this.listArray != null)
+            return this.listArray;
+        else
+            return null;
     }
 
     public String readData(Context context){
@@ -45,6 +56,15 @@ public class DataManagement {
         return data;
     }
 
+    public void parseData() {
+        String[] rows = this.data.split("\\n");
+        for (String row: rows ) {
+            AddLogicUnit buffer = convertToObject(row);
+            if(buffer != null)
+                listArray.add(buffer);
+        }
+    }
+
     public void writeData(Context context, String data){
         FileOutputStream fileOutputStream = null;
         try{
@@ -54,9 +74,31 @@ public class DataManagement {
             fileOutputStream.close();
             this.data += localData;
             count++;
+            AddLogicUnit addData = convertToObject(data);
+            if(addData != null)
+                listArray.add(addData);
         } catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    private AddLogicUnit convertToObject(String line) {
+        AddLogicUnit temp = null;
+        if(!line.isEmpty()) {
+            temp = new AddLogicUnit();
+            String[] array = line.split("\\|");
+            if(array[0].indexOf(beginToken) != 0)
+                temp.setTaskName(array[0]);
+            else
+                temp.setTaskName(array[0].split(beginToken)[1]);
+            temp.setResetFrequency(Integer.parseInt(array[1]));
+            temp.setTime(array[2]);
+            if(array[3].indexOf(endToken) != 0)
+                temp.setTotalTime(array[3]);
+            else
+                temp.setTotalTime(array[3].split(endToken)[0]);
+        }
+        return temp;
     }
 
     public String findData(String index){

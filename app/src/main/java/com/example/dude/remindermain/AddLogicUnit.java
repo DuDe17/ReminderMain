@@ -13,6 +13,13 @@ public class AddLogicUnit {
 
     private String localData;
 
+    public AddLogicUnit(String taskName, int resetFrequency, String time, String totalTime) {
+        this.taskName = taskName;
+        setResetFrequency(resetFrequency);
+        this.time = time;
+        this.totalTime = totalTime;
+    }
+
     public String getTaskName() {
         return taskName;
     }
@@ -62,7 +69,7 @@ public class AddLogicUnit {
     }
 
     public boolean prepareAddUnit(){
-        if(this.taskName != null || this.resetFrequency != 0 || this.time != null || this.totalTime != null){
+        if(this.taskName != null && this.resetFrequency != 0 && this.time != null && this.totalTime != null){
             this.localData = this.taskName + "|" + this.resetFrequency + "|" + this.time + "|" + this.totalTime;
             return true;
         }
